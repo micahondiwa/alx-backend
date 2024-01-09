@@ -6,7 +6,7 @@ from flask_babel import Babel
 
 
 class Config:
-    """The config class for langs"""
+    """Config class"""
 
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -15,15 +15,17 @@ class Config:
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.url_map.strict_slashes = flask_babel
+app.url_map.strict_slashes = False
 
-bebel = Babel(app)
+babel = Babel(app)
 
 
 @app.route("/")
 def index():
-    """The default route for the app"""
-    return render_template("1-index.html")
+    """default route"""
+    return render_template(
+        "1-index.html",
+    )
 
 
 if __name__ == "__main__":
